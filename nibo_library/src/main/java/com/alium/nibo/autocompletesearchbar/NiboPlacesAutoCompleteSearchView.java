@@ -88,7 +88,7 @@ public class NiboPlacesAutoCompleteSearchView extends RevealViewGroup {
     // Views
     private LogoView mLogoView;
     private CardView mSearchCardView;
-    private NiboHomeButton mHomeButton;
+    //private NiboHomeButton mHomeButton;
     private EditText mSearchEditText;
     private ListView mSuggestionListView;
     private ImageView mMicButton;
@@ -252,7 +252,7 @@ public class NiboPlacesAutoCompleteSearchView extends RevealViewGroup {
                 if (mHomeButtonMode == 0) { // Arrow Mode
                     mHomeButtonCloseIconState = NiboHomeButton.IconState.NIBO_ARROW;
                     mHomeButtonOpenIconState = NiboHomeButton.IconState.NIBO_ARROW;
-                } else { // Burger Mode
+                } else if (mHomeButtonMode == 1) { // Burger Mode
                     mHomeButtonCloseIconState = NiboHomeButton.IconState.NIBO_BURGER;
                     mHomeButtonOpenIconState = NiboHomeButton.IconState.NIBO_ARROW;
                 }
@@ -309,7 +309,7 @@ public class NiboPlacesAutoCompleteSearchView extends RevealViewGroup {
 
     private void bindViews() {
         this.mSearchCardView = (CardView) findViewById(R.id.cardview_search);
-        this.mHomeButton = (NiboHomeButton) findViewById(R.id.button_home_nibo);
+        //this.mHomeButton = (NiboHomeButton) findViewById(R.id.button_home_nibo);
         this.mLogoView = (LogoView) findViewById(R.id.logoview);
         this.mSearchEditText = (EditText) findViewById(R.id.edittext_search);
         this.mSuggestionListView = (ListView) findViewById(R.id.listview_suggestions);
@@ -329,9 +329,9 @@ public class NiboPlacesAutoCompleteSearchView extends RevealViewGroup {
     private void setValuesToViews() {
         this.mSearchCardView.setCardElevation(mSearchCardElevation);
         this.mSearchCardView.setMaxCardElevation(mSearchCardElevation);
-        this.mHomeButton.setArrowDrawableColor(mArrorButtonColor);
-        this.mHomeButton.setState(mHomeButtonCloseIconState);
-        this.mHomeButton.setAnimationDuration(DURATION_HOME_BUTTON);
+        //this.mHomeButton.setArrowDrawableColor(mArrorButtonColor);
+        //this.mHomeButton.setState(mHomeButtonCloseIconState);
+        //this.mHomeButton.setAnimationDuration(DURATION_HOME_BUTTON);
         this.mSearchEditText.setTextColor(mSearchEditTextColor);
         this.mSearchEditText.setHint(mSearchEditTextHint);
         this.mSearchEditText.setHintTextColor(mSearchEditTextHintColor);
@@ -344,20 +344,20 @@ public class NiboPlacesAutoCompleteSearchView extends RevealViewGroup {
     }
 
     private void setUpListeners() {
-        mHomeButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mCurrentState == SearchViewState.EDITING) {
-                    cancelEditing();
-                } else if (mCurrentState == SearchViewState.SEARCH) {
-                    fromSearchToNormal();
-                } else {
-                    if (mHomeButtonListener != null)
-                        mHomeButtonListener.onHomeButtonClick();
-                }
-            }
-
-        });
+        //mHomeButton.setOnClickListener(new OnClickListener() {
+        //    @Override
+        //    public void onClick(View v) {
+        //        if (mCurrentState == SearchViewState.EDITING) {
+        //            cancelEditing();
+        //        } else if (mCurrentState == SearchViewState.SEARCH) {
+        //            fromSearchToNormal();
+        //        } else {
+        //            if (mHomeButtonListener != null)
+        //                mHomeButtonListener.onHomeButtonClick();
+        //        }
+        //    }
+        //
+        //});
         mLogoView.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -664,7 +664,7 @@ public class NiboPlacesAutoCompleteSearchView extends RevealViewGroup {
      */
 
     public void setHomeButtonVisibility(int visibility) {
-        this.mHomeButton.setVisibility(visibility);
+        //this.mHomeButton.setVisibility(visibility);
     }
 
     /***
@@ -981,7 +981,7 @@ public class NiboPlacesAutoCompleteSearchView extends RevealViewGroup {
             }
 
         }
-        mHomeButton.animateState(mHomeButtonOpenIconState);
+        //mHomeButton.animateState(mHomeButtonOpenIconState);
     }
 
     private void fromNormalToSearch() {
@@ -992,7 +992,7 @@ public class NiboPlacesAutoCompleteSearchView extends RevealViewGroup {
             setVisibility(VISIBLE);
             fromEditingToSearch();
         }
-        mHomeButton.animateState(mHomeButtonSearchIconState);
+        //mHomeButton.animateState(mHomeButtonSearchIconState);
     }
 
     private void fromSearchToNormal() {
@@ -1007,13 +1007,13 @@ public class NiboPlacesAutoCompleteSearchView extends RevealViewGroup {
         setLogoTextInt("");
         if (mSearchListener != null)
             mSearchListener.onSearchExit();
-        mHomeButton.animateState(mHomeButtonCloseIconState);
+        //mHomeButton.animateState(mHomeButtonCloseIconState);
     }
 
     private void fromSearchToEditing() {
         openSearchInternal(true);
         setCurrentState(SearchViewState.EDITING);
-        mHomeButton.animateState(mHomeButtonOpenIconState);
+        //mHomeButton.animateState(mHomeButtonOpenIconState);
     }
 
     private void fromEditingToNormal() {
@@ -1028,7 +1028,7 @@ public class NiboPlacesAutoCompleteSearchView extends RevealViewGroup {
         setLogoTextInt("");
         if (mSearchListener != null)
             mSearchListener.onSearchExit();
-        mHomeButton.animateState(mHomeButtonCloseIconState);
+        //mHomeButton.animateState(mHomeButtonCloseIconState);
     }
 
     private void fromEditingToSearch() {
@@ -1048,7 +1048,7 @@ public class NiboPlacesAutoCompleteSearchView extends RevealViewGroup {
                 search();
             }
             closeSearchInternal();
-            mHomeButton.animateState(mHomeButtonSearchIconState);
+            //mHomeButton.animateState(mHomeButtonSearchIconState);
         }
     }
 

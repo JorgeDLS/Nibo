@@ -21,12 +21,13 @@
             android:layout_width="match_parent"
             android:layout_height="48dp">
 
-            <com.alium.nibo.autocompletesearchbar.NiboHomeButton
+            <ImageView
                 android:id="@+id/button_home_nibo"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
+                app:srcCompat="@drawable/ic_marker"
                 android:scaleType="center"/>
 
             <com.alium.nibo.autocompletesearchbar.LogoView

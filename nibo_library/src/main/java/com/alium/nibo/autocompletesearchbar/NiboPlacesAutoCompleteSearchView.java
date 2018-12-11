@@ -725,6 +725,16 @@ public class NiboPlacesAutoCompleteSearchView extends RevealViewGroup {
         mAvoidTriggerTextWatcher = false;
     }
 
+    /***
+     * Set whether the EditText should be shown. Needed for showing the hint before clicking the view.
+     *
+     * @param visibility Whether to show
+     */
+
+    public void setEditTextVisibility(int visibility) {
+        this.mSearchEditText.setVisibility(visibility);
+    }
+
     private void buildEmptySearchSuggestions() {
         if (mSuggestionBuilder != null) {
             mSearchSuggestions.clear();

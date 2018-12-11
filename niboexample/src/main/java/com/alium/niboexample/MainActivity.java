@@ -210,6 +210,7 @@ public class MainActivity extends AppCompatActivity implements NiboAutocompleteS
         mLocationPicker = (AppCompatButton) findViewById(R.id.location_picker);
         mOriginDestinationPicker = (AppCompatButton) findViewById(R.id.origin_destination_picker);
         mAutocompletesearchbar.setmProvider(this);
+        mAutocompletesearchbar.setEditTextVisibility(View.VISIBLE);
 
         mLocationPicker.setOnClickListener(new View.OnClickListener() {
             @Override

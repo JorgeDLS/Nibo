@@ -30,23 +30,6 @@
                 app:srcCompat="@drawable/ic_marker"
                 android:scaleType="center"/>
 
-            <com.alium.nibo.autocompletesearchbar.LogoView
-                android:id="@+id/logoview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_toRightOf="@+id/button_home_nibo"
-                android:layout_toEndOf="@+id/button_home_nibo"
-                android:layout_toLeftOf="@+id/button_mic"
-                android:layout_toStartOf="@+id/button_mic"
-                android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginEnd="16dp"
-                android:gravity="center_vertical"
-                android:singleLine="true"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#212121" />
-
             <EditText
                 android:id="@+id/edittext_search"
                 android:layout_width="match_parent"
@@ -68,7 +51,25 @@
                 android:visibility="gone">
 
                 <requestFocus />
+
             </EditText>
+
+            <com.alium.nibo.autocompletesearchbar.LogoView
+                android:id="@+id/logoview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/button_home_nibo"
+                android:layout_toEndOf="@+id/button_home_nibo"
+                android:layout_toLeftOf="@+id/button_mic"
+                android:layout_toStartOf="@+id/button_mic"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#212121" />
 
             <ImageView
                 android:id="@+id/button_mic"

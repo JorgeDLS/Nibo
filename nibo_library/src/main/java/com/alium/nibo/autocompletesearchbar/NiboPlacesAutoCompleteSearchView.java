@@ -726,6 +726,23 @@ public class NiboPlacesAutoCompleteSearchView extends RevealViewGroup {
     }
 
     /***
+     * Set the PersistentSearchView's current text manually and displays the suggestions
+     *
+     * @param text                    Text
+     * @param avoidTriggerTextWatcher avoid trigger TextWatcher(TextChangedListener)
+     * @param displaySuggestions clicks mLogoView to show suggestions
+     */
+    public void setSearchString(String text, boolean avoidTriggerTextWatcher,
+        boolean displaySuggestions) {
+        if (avoidTriggerTextWatcher)
+            mAvoidTriggerTextWatcher = true;
+        mSearchEditText.setText("");
+        mSearchEditText.append(text);
+        mAvoidTriggerTextWatcher = false;
+        mLogoView.callOnClick();
+    }
+
+    /***
      * Set whether the EditText should be shown. Needed for showing the hint before clicking the view.
      *
      * @param visibility Whether to show

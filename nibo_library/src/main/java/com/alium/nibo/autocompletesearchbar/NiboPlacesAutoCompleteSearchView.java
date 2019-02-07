@@ -743,6 +743,16 @@ public class NiboPlacesAutoCompleteSearchView extends RevealViewGroup {
     }
 
     /***
+     * Sets an {@link OnFocusChangeListener} to the mSearchEditText.
+     *
+     * @param onFocusChangeListener {@link OnFocusChangeListener}
+     */
+
+    @Override public void setOnFocusChangeListener(OnFocusChangeListener onFocusChangeListener) {
+        this.mSearchEditText.setOnFocusChangeListener(onFocusChangeListener);
+    }
+
+    /***
      * Set whether the EditText should be shown. Needed for showing the hint before clicking the view.
      *
      * @param visibility Whether to show

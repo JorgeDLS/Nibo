@@ -413,7 +413,6 @@ public class NiboPlacesAutoCompleteSearchView extends RevealViewGroup {
 
         Observable<String> obs = RxTextView.textChanges(mSearchEditText).filter(
             charSequence -> charSequence.length() > 1)
-            .skip(3)
             .sample(2, TimeUnit.SECONDS)
             .map(CharSequence::toString);
 

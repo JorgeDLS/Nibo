@@ -399,23 +399,27 @@ public class NiboPlacesAutoCompleteSearchView extends RevealViewGroup {
             }
         });
 
+        //Observable<String> obs = RxTextView.textChanges(mSearchEditText).filter(new Predicate<CharSequence>() {
+        //    @Override
+        //    public boolean test(@NonNull CharSequence charSequence) throws Exception {
+        //        return charSequence.length() > 1;
+        //    }
+        //}).debounce(300, TimeUnit.MILLISECONDS).map(new Function<CharSequence, String>() {
+        //    @Override
+        //    public String apply(@NonNull CharSequence charSequence) throws Exception {
+        //        return charSequence.toString();
+        //    }
+        //});
 
-        Observable<String> obs = RxTextView.textChanges(mSearchEditText).filter(new Predicate<CharSequence>() {
-            @Override
-            public boolean test(@NonNull CharSequence charSequence) throws Exception {
-                return charSequence.length() > 1;
-            }
-        }).debounce(300, TimeUnit.MILLISECONDS).map(new Function<CharSequence, String>() {
-            @Override
-            public String apply(@NonNull CharSequence charSequence) throws Exception {
-                return charSequence.toString();
-            }
-        });
+        Observable<String> obs = RxTextView.textChanges(mSearchEditText).filter(
+            charSequence -> charSequence.length() > 1)
+            .skip(3)
+            .sample(2, TimeUnit.SECONDS)
+            .map(CharSequence::toString);
 
         obs.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<String>() {
-
 
                     @Override
                     public void onError(Throwable e) {

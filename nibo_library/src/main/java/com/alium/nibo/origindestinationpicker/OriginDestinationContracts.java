@@ -6,7 +6,7 @@ import com.alium.nibo.models.NiboSelectedOriginDestination;
 import com.alium.nibo.models.Route;
 import com.alium.nibo.mvp.contract.NiboPresentable;
 import com.alium.nibo.mvp.contract.NiboViewable;
-import com.google.android.gms.location.places.Place;
+import com.google.android.libraries.places.api.model.Place;
 
 import java.util.List;
 

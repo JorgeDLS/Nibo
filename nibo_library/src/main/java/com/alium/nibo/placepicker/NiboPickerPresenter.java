@@ -10,7 +10,7 @@ import com.alium.nibo.mvp.BaseNiboPresenter;
 import com.alium.nibo.placepicker.NiboPickerContracts.View;
 import com.alium.nibo.rx.DefaultObserver;
 import com.alium.nibo.utils.NiboConstants;
-import com.google.android.gms.location.places.Place;
+import com.google.android.libraries.places.api.model.Place;
 
 /**
  * Created by aliumujib on 05/05/2018.

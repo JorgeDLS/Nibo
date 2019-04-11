@@ -3,7 +3,7 @@ package com.alium.nibo.placepicker;
 import com.alium.nibo.models.NiboSelectedPlace;
 import com.alium.nibo.mvp.contract.NiboPresentable;
 import com.alium.nibo.mvp.contract.NiboViewable;
-import com.google.android.gms.location.places.Place;
+import com.google.android.libraries.places.api.model.Place;
 
 /**
  * Created by aliumujib on 05/05/2018.

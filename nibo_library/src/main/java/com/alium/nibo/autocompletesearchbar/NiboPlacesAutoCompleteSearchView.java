@@ -58,8 +58,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
-import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
 
 
@@ -121,7 +119,8 @@ public class NiboPlacesAutoCompleteSearchView extends RevealViewGroup {
     public void setmProvider(NiboAutocompleteSVProvider mProvider) {
         Log.d(TAG, "Procider has been set");
         this.mProvider = mProvider;
-        mSuggestionsProvider = new SuggestionsProvider(mProvider.getGoogleApiClient(), getContext());
+        mSuggestionsProvider = new SuggestionsProvider(mProvider.getGoogleApiClient(), mProvider.getPlacesClient(),
+            getContext());
         setUpSearchView(mProvider.getShouldUseVoice());
     }
 

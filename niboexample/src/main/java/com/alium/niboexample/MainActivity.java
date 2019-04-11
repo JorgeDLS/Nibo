@@ -2,6 +2,8 @@ package com.alium.niboexample;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -23,11 +25,13 @@ import com.alium.nibo.utils.NiboConstants;
 import com.alium.nibo.utils.NiboStyle;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.places.Places;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.net.PlacesClient;
 
 public class MainActivity extends AppCompatActivity implements NiboAutocompleteSVProvider, GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks {
 
-    private GoogleApiClient mGoogleApiClient;
+    //private GoogleApiClient mGoogleApiClient;
+    private PlacesClient placesClient;
     private NiboPlacesAutoCompleteSearchView mAutocompletesearchbar;
     private AppCompatButton mLocationPicker;
     private AppCompatButton mOriginDestinationPicker;
@@ -37,14 +41,21 @@ public class MainActivity extends AppCompatActivity implements NiboAutocompleteS
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mGoogleApiClient = new GoogleApiClient
-                .Builder(this)
-                .enableAutoManage(this, 0, this)
-                .addApi(Places.GEO_DATA_API)
-                .addApi(Places.PLACE_DETECTION_API)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .build();
+        //mGoogleApiClient = new GoogleApiClient
+        //        .Builder(this)
+        //        .enableAutoManage(this, 0, this)
+        //        .addConnectionCallbacks(this)
+        //        .addOnConnectionFailedListener(this)
+        //        .build();
+
+        try {
+            ApplicationInfo ai = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
+            Bundle bundle = ai.metaData;
+            Places.initialize(getApplicationContext(), bundle.getString("com.google.android.geo.API_KEY"));
+            placesClient = Places.createClient(getApplicationContext());
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
 
         initView();
 
@@ -122,7 +133,12 @@ public class MainActivity extends AppCompatActivity implements NiboAutocompleteS
 
     @Override
     public GoogleApiClient getGoogleApiClient() {
-        return mGoogleApiClient;
+        //return mGoogleApiClient;
+        return null;
+    }
+
+    @Override public PlacesClient getPlacesClient() {
+        return placesClient;
     }
 
     @Override

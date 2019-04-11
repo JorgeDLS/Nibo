@@ -78,6 +78,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+import com.google.android.libraries.places.api.net.PlacesClient;
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -98,6 +99,7 @@ public abstract class BaseNiboFragment<T extends NiboPresentable> extends Fragme
 
 
     protected GoogleApiClient mGoogleApiClient;
+    protected PlacesClient placesClient;
     private LocationRequest mLocationRequest;
     private LocationCallback mLocationCallback;
     private LocationSettingsRequest mLocationSettingsRequest;
@@ -301,6 +303,7 @@ public abstract class BaseNiboFragment<T extends NiboPresentable> extends Fragme
         super.onViewCreated(view, savedInstanceState);
 
         mGoogleApiClient = injection.getGoogleApiClient();
+        placesClient = injection.getPlacesClient();
         mLocationRequest = injection.getLocationRequest();
 
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();

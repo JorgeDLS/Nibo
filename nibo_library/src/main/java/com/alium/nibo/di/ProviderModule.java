@@ -5,6 +5,7 @@ import android.content.Context;
 import com.alium.nibo.repo.location.LocationRepository;
 import com.alium.nibo.repo.location.SuggestionsProvider;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.libraries.places.api.net.PlacesClient;
 
 /**
  * Created by aliumujib on 05/05/2018.
@@ -13,19 +14,21 @@ import com.google.android.gms.common.api.GoogleApiClient;
 public class ProviderModule {
 
     private final GoogleApiClient googleApiClient;
+    private final PlacesClient placesClient;
     private final Context context;
 
     private SuggestionsProvider suggestionsProvider;
     private LocationRepository locationRepository;
 
-    public ProviderModule(GoogleApiClient googleApiClient, Context context) {
+    public ProviderModule(GoogleApiClient googleApiClient,PlacesClient placesClient, Context context) {
         this.googleApiClient = googleApiClient;
+        this.placesClient = placesClient;
         this.context = context;
     }
 
     public SuggestionsProvider getSuggestionsProvider() {
         if (suggestionsProvider == null) {
-            suggestionsProvider = new SuggestionsProvider(googleApiClient, context);
+            suggestionsProvider = new SuggestionsProvider(googleApiClient, placesClient, context);
         }
         return suggestionsProvider;
     }

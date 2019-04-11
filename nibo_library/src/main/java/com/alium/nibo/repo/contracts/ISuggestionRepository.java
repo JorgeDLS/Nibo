@@ -1,7 +1,7 @@
 package com.alium.nibo.repo.contracts;
 
 import com.alium.nibo.autocompletesearchbar.NiboSearchSuggestionItem;
-import com.google.android.gms.location.places.Place;
+import com.google.android.libraries.places.api.model.Place;
 
 import java.util.Collection;
 

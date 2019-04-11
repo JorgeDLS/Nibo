@@ -39,7 +39,7 @@ import com.alium.nibo.models.Route;
 import com.alium.nibo.utils.NiboConstants;
 import com.alium.nibo.utils.NiboStyle;
 import com.alium.nibo.utils.customviews.RoundedView;
-import com.google.android.gms.location.places.Place;
+import com.google.android.libraries.places.api.model.Place;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.CameraPosition;

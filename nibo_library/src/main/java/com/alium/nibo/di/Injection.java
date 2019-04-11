@@ -10,6 +10,7 @@ import com.alium.nibo.repo.contracts.IGeoCodingRepository;
 import com.alium.nibo.repo.contracts.ISuggestionRepository;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.libraries.places.api.net.PlacesClient;
 
 /**
  * Created by aliumujib on 03/05/2018.
@@ -26,6 +27,10 @@ public class Injection {
 
     public GoogleApiClient getGoogleApiClient() {
         return googleClientModule.getGoogleApiClient();
+    }
+
+    public PlacesClient getPlacesClient() {
+        return googleClientModule.getPlacesClient();
     }
 
     private Injection() {
@@ -120,7 +125,7 @@ public class Injection {
                 if (context == null) {
                     throw new IllegalStateException("Please set context, shit depends on it");
                 } else {
-                    providerModule = new ProviderModule(googleClientModule.getGoogleApiClient(), context);
+                    providerModule = new ProviderModule(googleClientModule.getGoogleApiClient(), googleClientModule.getPlacesClient(), context);
                 }
             }
             if (retrofitModule == null) {

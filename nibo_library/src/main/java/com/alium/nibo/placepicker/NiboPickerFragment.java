@@ -24,11 +24,12 @@ import com.alium.nibo.utils.NiboConstants;
 import com.alium.nibo.utils.NiboStyle;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationSettingsRequest;
-import com.google.android.gms.location.places.Place;
+import com.google.android.libraries.places.api.model.Place;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
+import com.google.android.libraries.places.api.net.PlacesClient;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -226,7 +227,11 @@ public class NiboPickerFragment extends BaseNiboFragment<NiboPickerContracts.Pre
         return mGoogleApiClient;
     }
 
-    @Override
+  @Override public PlacesClient getPlacesClient() {
+        return placesClient;
+  }
+
+  @Override
     public void onHomeButtonClicked() {
         getActivity().finish();
     }

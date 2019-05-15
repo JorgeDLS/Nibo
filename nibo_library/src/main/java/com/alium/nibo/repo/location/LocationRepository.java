@@ -5,7 +5,6 @@ import android.location.Location;
 import android.support.annotation.NonNull;
 
 import com.alium.nibo.repo.contracts.ILocationRepository;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -23,13 +22,10 @@ import io.reactivex.schedulers.Schedulers;
 
 public class LocationRepository implements ILocationRepository {
 
-    private GoogleApiClient mGoogleApiClient;
     private Context context;
 
-    public LocationRepository(GoogleApiClient mGoogleApiClient, Context context) {
-        this.mGoogleApiClient = mGoogleApiClient;
+    public LocationRepository(Context context) {
         this.context = context;
-        this.mGoogleApiClient.connect();
     }
 
     @Override

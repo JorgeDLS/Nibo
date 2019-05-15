@@ -1,6 +1,5 @@
 package com.alium.nibo.autocompletesearchbar;
 
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.libraries.places.api.net.PlacesClient;
 
 /**
@@ -8,8 +7,6 @@ import com.google.android.libraries.places.api.net.PlacesClient;
  */
 
 public interface NiboAutocompleteSVProvider {
-
-    GoogleApiClient getGoogleApiClient();
 
     PlacesClient getPlacesClient();
 

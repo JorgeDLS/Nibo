@@ -1,10 +1,10 @@
 package com.alium.nibo.di;
 
+import android.content.Context;
 import com.alium.nibo.repo.contracts.IDirectionsRepository;
 import com.alium.nibo.repo.contracts.IGeoCodingRepository;
 import com.alium.nibo.repo.directions.DirectionsRepository;
 import com.alium.nibo.repo.location.GeoCodingRepository;
-import com.alium.nibo.repo.location.LocationRepository;
 
 /**
  * Created by aliumujib on 03/05/2018.
@@ -13,10 +13,11 @@ import com.alium.nibo.repo.location.LocationRepository;
 public class RepositoryModule {
 
     private static RepositoryModule repositoryModule;
+    private final Context context;
 
-    public static RepositoryModule getInstance(APIModule apiModule) {
+    public static RepositoryModule getInstance(APIModule apiModule, Context context) {
         if (repositoryModule == null) {
-            repositoryModule = new RepositoryModule(apiModule);
+            repositoryModule = new RepositoryModule(apiModule, context);
         }
         return repositoryModule;
     }
@@ -26,8 +27,9 @@ public class RepositoryModule {
 
     APIModule apiModule;
 
-    private RepositoryModule(APIModule apiModule) {
+    private RepositoryModule(APIModule apiModule, Context context) {
         this.apiModule = apiModule;
+        this.context = context;
     }
 
     public IDirectionsRepository getDirectionsRepository() {
@@ -39,7 +41,7 @@ public class RepositoryModule {
 
     public IGeoCodingRepository getGeoCodingRepository() {
         if (geoCodingRepository == null) {
-            geoCodingRepository = new GeoCodingRepository(apiModule.getGeocodeAPI());
+            geoCodingRepository = new GeoCodingRepository(apiModule.getGeocodeAPI(), context);
         }
         return geoCodingRepository;
     }

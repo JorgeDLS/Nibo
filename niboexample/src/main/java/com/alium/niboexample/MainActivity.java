@@ -131,12 +131,6 @@ public class MainActivity extends AppCompatActivity implements NiboAutocompleteS
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public GoogleApiClient getGoogleApiClient() {
-        //return mGoogleApiClient;
-        return null;
-    }
-
     @Override public PlacesClient getPlacesClient() {
         return placesClient;
     }

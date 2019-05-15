@@ -43,6 +43,11 @@ import android.widget.TextView;
 import com.alium.nibo.R;
 import com.alium.nibo.autocompletesearchbar.animation.BaseSupportAnimator;
 import com.alium.nibo.autocompletesearchbar.animation.ViewAnimationUtilties;
+import com.alium.nibo.di.APIModule;
+import com.alium.nibo.di.RepositoryModule;
+import com.alium.nibo.di.RetrofitModule;
+import com.alium.nibo.domain.geocoding.GeocodeAddressUseCase;
+import com.alium.nibo.domain.geocoding.GeocodeCordinatesUseCase;
 import com.alium.nibo.placepicker.PlaceSuggestionsBuilder;
 import com.alium.nibo.repo.location.SuggestionsProvider;
 import com.jakewharton.rxbinding2.widget.RxTextView;
@@ -119,8 +124,13 @@ public class NiboPlacesAutoCompleteSearchView extends RevealViewGroup {
     public void setmProvider(NiboAutocompleteSVProvider mProvider) {
         Log.d(TAG, "Procider has been set");
         this.mProvider = mProvider;
-        mSuggestionsProvider = new SuggestionsProvider(mProvider.getGoogleApiClient(), mProvider.getPlacesClient(),
-            getContext());
+      RepositoryModule repositoryModule =
+          RepositoryModule.getInstance(APIModule.getInstance(RetrofitModule.getInstance()),
+              getContext());
+      GeocodeAddressUseCase geocodeAddressUseCase =
+          new GeocodeAddressUseCase(repositoryModule.getGeoCodingRepository());
+      mSuggestionsProvider = new SuggestionsProvider(mProvider.getPlacesClient(), getContext(),
+          geocodeAddressUseCase);
         setUpSearchView(mProvider.getShouldUseVoice());
     }
 

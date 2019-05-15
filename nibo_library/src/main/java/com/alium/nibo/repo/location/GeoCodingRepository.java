@@ -1,5 +1,8 @@
 package com.alium.nibo.repo.location;
 
+import android.content.Context;
+import android.location.Address;
+import android.location.Geocoder;
 import android.util.Log;
 
 import com.alium.nibo.repo.api.GeocodeAPI;
@@ -7,6 +10,8 @@ import com.alium.nibo.repo.contracts.IGeoCodingRepository;
 import com.alium.nibo.utils.NiboConstants;
 import com.google.gson.JsonObject;
 
+import java.io.IOException;
+import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,10 +30,29 @@ import retrofit2.Response;
 public class GeoCodingRepository implements IGeoCodingRepository {
 
     GeocodeAPI geocodeAPI;
+    Geocoder geocoder;
     private String TAG = getClass().getSimpleName();
 
-    public GeoCodingRepository(GeocodeAPI geocodeAPI) {
+    public GeoCodingRepository(GeocodeAPI geocodeAPI, Context context) {
         this.geocodeAPI = geocodeAPI;
+        this.geocoder = new Geocoder(context);
+    }
+
+    @Override public Observable<List<Address>> getObservableAddressStringFromAddress(String address) {
+        return Observable.create(emitter -> {
+            try {
+                List<Address> addresses = geocoder.getFromLocationName(address, 5);
+                if (addresses != null) {
+                    emitter.onNext(addresses);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                if (!emitter.isDisposed()) {
+                    emitter.onError(e);
+                }
+            }
+            emitter.onComplete();
+        });
     }
 
     @Override

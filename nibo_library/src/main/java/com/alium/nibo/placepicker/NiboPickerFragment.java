@@ -221,12 +221,6 @@ public class NiboPickerFragment extends BaseNiboFragment<NiboPickerContracts.Pre
         super.onStop();
     }
 
-
-    @Override
-    public GoogleApiClient getGoogleApiClient() {
-        return mGoogleApiClient;
-    }
-
   @Override public PlacesClient getPlacesClient() {
         return placesClient;
   }

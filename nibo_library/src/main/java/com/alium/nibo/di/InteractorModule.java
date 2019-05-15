@@ -1,6 +1,7 @@
 package com.alium.nibo.di;
 
 import com.alium.nibo.domain.directions.FindDirectionsUseCase;
+import com.alium.nibo.domain.geocoding.GeocodeAddressUseCase;
 import com.alium.nibo.domain.geocoding.GeocodeCordinatesUseCase;
 import com.alium.nibo.domain.places.GetPlaceDetailsUseCase;
 import com.alium.nibo.domain.places.GetPlaceSuggestionsUseCase;
@@ -19,11 +20,13 @@ public class InteractorModule {
         this.providerModule = providerModule;
     }
 
-
     public GeocodeCordinatesUseCase getGeocodeCordinatesUseCase() {
         return new GeocodeCordinatesUseCase(repositoryModule.getGeoCodingRepository());
     }
 
+    public GeocodeAddressUseCase getGeocodeAddressUseCase() {
+        return new GeocodeAddressUseCase(repositoryModule.getGeoCodingRepository());
+    }
 
     public GetPlaceDetailsUseCase getGetPlaceDetailsUseCase() {
         return new GetPlaceDetailsUseCase(providerModule.getSuggestionsProvider());

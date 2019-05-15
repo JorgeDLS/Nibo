@@ -1,11 +1,8 @@
 package com.alium.nibo.di;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
-
 import com.alium.nibo.origindestinationpicker.OriginDestinationContracts;
 import com.alium.nibo.placepicker.NiboPickerContracts;
-import com.alium.nibo.placepicker.NiboPickerPresenter;
 import com.alium.nibo.repo.contracts.IGeoCodingRepository;
 import com.alium.nibo.repo.contracts.ISuggestionRepository;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -125,7 +122,7 @@ public class Injection {
                 if (context == null) {
                     throw new IllegalStateException("Please set context, shit depends on it");
                 } else {
-                    providerModule = new ProviderModule(googleClientModule.getGoogleApiClient(), googleClientModule.getPlacesClient(), context);
+                    providerModule = new ProviderModule(googleClientModule.getPlacesClient(), context);
                 }
             }
             if (retrofitModule == null) {
@@ -135,7 +132,7 @@ public class Injection {
                 apiModule = APIModule.getInstance(retrofitModule);
             }
             if (repositoryModule == null) {
-                repositoryModule = RepositoryModule.getInstance(apiModule);
+                repositoryModule = RepositoryModule.getInstance(apiModule, context);
             }
             if (interactorModule == null) {
                 interactorModule = new InteractorModule(repositoryModule, providerModule);

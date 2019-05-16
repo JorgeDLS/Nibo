@@ -186,6 +186,10 @@ public class MainActivity extends AppCompatActivity implements NiboAutocompleteS
                 return false;
             }
 
+            @Override public void onNoSuggestions() {
+
+            }
+
             @Override
             public void onSearchCleared() {
 

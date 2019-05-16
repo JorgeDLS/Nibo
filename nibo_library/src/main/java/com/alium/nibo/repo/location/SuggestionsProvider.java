@@ -89,6 +89,8 @@ public class SuggestionsProvider implements ISuggestionRepository {
                                             placeSuggestionItems.add(placeSuggestion);
                                         }
                                         observer.onNext(placeSuggestionItems);
+                                    } else {
+                                      observer.onComplete();
                                     }
 
                                 }

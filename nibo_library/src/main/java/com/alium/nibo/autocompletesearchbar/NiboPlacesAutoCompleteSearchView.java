@@ -806,6 +806,10 @@ public class NiboPlacesAutoCompleteSearchView extends RevealViewGroup {
                 public void accept(@NonNull Throwable throwable) throws Exception {
                     Log.d(TAG, throwable.getMessage());
                 }
+            }, () -> {
+                if (mSearchSuggestions.isEmpty()) {
+                    mSearchListener.onNoSuggestions();
+                }
             });
 
         } else {
@@ -1217,6 +1221,11 @@ public class NiboPlacesAutoCompleteSearchView extends RevealViewGroup {
          * Called when a suggestion is pressed is pressed
          */
         boolean onSuggestion(NiboSearchSuggestionItem niboSearchSuggestionItem);
+
+        /**
+         * Called when the search don't return any results
+         */
+        void onNoSuggestions();
 
         /**
          * Called when the clear button is pressed

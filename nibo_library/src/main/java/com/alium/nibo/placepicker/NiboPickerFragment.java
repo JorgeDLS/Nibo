@@ -315,6 +315,10 @@ public class NiboPickerFragment extends BaseNiboFragment<NiboPickerContracts.Pre
             return false;
         }
 
+        @Override public void onNoSuggestions() {
+
+        }
+
         @Override
         public void onSearchCleared() {
 

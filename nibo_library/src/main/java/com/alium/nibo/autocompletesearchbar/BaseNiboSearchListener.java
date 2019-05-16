@@ -7,6 +7,10 @@ public class BaseNiboSearchListener implements NiboPlacesAutoCompleteSearchView.
         return true;
     }
 
+    @Override public void onNoSuggestions() {
+
+    }
+
     @Override
     public void onSearchCleared() {
 

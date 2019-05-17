@@ -47,7 +47,6 @@ import com.alium.nibo.di.APIModule;
 import com.alium.nibo.di.RepositoryModule;
 import com.alium.nibo.di.RetrofitModule;
 import com.alium.nibo.domain.geocoding.GeocodeAddressUseCase;
-import com.alium.nibo.domain.geocoding.GeocodeCordinatesUseCase;
 import com.alium.nibo.placepicker.PlaceSuggestionsBuilder;
 import com.alium.nibo.repo.location.SuggestionsProvider;
 import com.jakewharton.rxbinding2.widget.RxTextView;
@@ -642,6 +641,8 @@ public class NiboPlacesAutoCompleteSearchView extends RevealViewGroup {
     public void micClick() {
         if (!mIsMic) {
             setSearchString("", false);
+            mSearchListener.onSearchCleared();
+            hideProgressBar();
         } else {
             if (mVoiceRecognitionDelegate != null)
                 mVoiceRecognitionDelegate.onStartVoiceRecognition();
@@ -809,6 +810,7 @@ public class NiboPlacesAutoCompleteSearchView extends RevealViewGroup {
             }, () -> {
                 if (mSearchSuggestions.isEmpty()) {
                     mSearchListener.onNoSuggestions();
+                    hideProgressBar();
                 }
             });
 
